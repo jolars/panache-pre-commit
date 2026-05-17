@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "panache-pre-commit"
-version = "2.46.0"
+version = "2.47.0"
 description = "pre-commit hook wrapper for panache"
 license = { text = "MIT" }
 requires-python = ">=3.10"
-dependencies = ["panache-cli==2.46.0"]
+dependencies = ["panache-cli==2.47.0"]
 
 [tool.setuptools]
 py-modules = []
