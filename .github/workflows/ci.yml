@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    tags: ["v*"]
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install pre-commit
+        run: pip install pre-commit
+
+      - name: Run hooks against a sample document
+        shell: bash
+        run: |
+          hook_repo="$PWD"
+          # Use RUNNER_TEMP so the sandbox is on the same drive as the
+          # checkout; pre-commit needs a relative path between the two,
+          # which fails across drives on Windows (C: vs D:).
+          sandbox="$(mktemp -d -p "$RUNNER_TEMP")"
+          cd "$sandbox"
+          git init -q
+          git config user.email ci@example.com
+          git config user.name ci
+          printf '#  Title\n\nsome    text\n' > doc.md
+          git add doc.md
+          # The first format run rewrites the file, so the hook must fail...
+          if pre-commit try-repo "$hook_repo" panache-format --files doc.md; then
+            echo "expected panache-format to modify the file" >&2
+            exit 1
+          fi
+          git add doc.md
+          # ...and a second run must be clean (idempotence).
+          pre-commit try-repo "$hook_repo" panache-format --files doc.md
+          pre-commit try-repo "$hook_repo" panache-lint --files doc.md
