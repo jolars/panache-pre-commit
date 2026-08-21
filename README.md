@@ -20,7 +20,7 @@ Add to your `.pre-commit-config.yaml`:
 ```yaml
 repos:
   - repo: https://github.com/jolars/panache-pre-commit
-    rev: v3.5.0  # use `pre-commit autoupdate` to bump
+    rev: v3.6.0  # use `pre-commit autoupdate` to bump
     hooks:
       - id: panache-format
       - id: panache-lint
