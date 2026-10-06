@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "panache-pre-commit"
 version = "3.14.0"
-description = "pre-commit hook wrapper for panache"
+description = "pre-commit hooks for Quarto and other Markdown flavors with Panache"
 license = { text = "MIT" }
 requires-python = ">=3.10"
 dependencies = ["panache-cli==3.14.0"]

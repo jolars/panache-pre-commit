@@ -3,8 +3,8 @@
 [![CI](https://github.com/jolars/panache-pre-commit/actions/workflows/ci.yml/badge.svg)](https://github.com/jolars/panache-pre-commit/actions/workflows/ci.yml)
 
 [pre-commit](https://pre-commit.com) hooks for
-[panache](https://github.com/jolars/panache), a formatter and linter for Quarto,
-Pandoc, and Markdown.
+[panache](https://github.com/jolars/panache), a formatter and linter for Quarto
+and other Markdown flavors.
 
 This repository is a thin shim. The hooks themselves are implemented in the main
 [`jolars/panache`](https://github.com/jolars/panache) repository; this repo
@@ -28,8 +28,8 @@ repos:
 
 ## Hooks
 
-- `panache-format` --- format Quarto, Pandoc, and Markdown files
-- `panache-lint` --- lint Quarto, Pandoc, and Markdown files
+- `panache-format` --- format Quarto and other Markdown files
+- `panache-lint` --- lint Quarto and other Markdown files
 
 Both hooks install panache from PyPI (the `panache-cli` wheel, which ships the
 `panache` binary) into pre-commit's managed virtualenv.
